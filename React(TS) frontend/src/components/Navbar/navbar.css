@@ -1,0 +1,46 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem;
+    margin-bottom: 0px;
+}
+
+h1{
+    font-size:xx-large;
+}
+
+hr{
+    margin-top: 0px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    height: 2px;
+    color: black;
+    background-color: black;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 12%;
+    margin-right: 1.5%;
+}
+
+button{
+    font-size:large;
+    border-radius: 0px;
+    box-shadow: 10px;
+    box-shadow: 0.1em 0.1em black;
+}
+
+button:hover{
+    transform: translate(0.1em,0.1em);
+    box-shadow: 0px 0px;
+}
+
+#delete-product-bin:hover{
+    background-color: rgb(231, 151, 151);
+}
