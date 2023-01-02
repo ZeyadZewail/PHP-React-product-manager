@@ -8,6 +8,7 @@
 
 h1{
     font-size:xx-large;
+    
 }
 
 hr{
@@ -22,7 +23,7 @@ hr{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 12%;
+    width: auto;
     margin-right: 1.5%;
 }
 
@@ -31,6 +32,7 @@ button{
     border-radius: 0px;
     box-shadow: 10px;
     box-shadow: 0.1em 0.1em black;
+    margin-left: 1em;
 }
 
 button:hover{
