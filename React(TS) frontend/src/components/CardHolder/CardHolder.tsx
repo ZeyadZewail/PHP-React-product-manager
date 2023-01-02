@@ -4,10 +4,11 @@ import Card from '../Card/Card'
 import './CardHolder.css'
 
 interface CardsHolderInterface{
-    Products: Product[]
+    Products: Product[],
+    toggleProduct: Function,
 }
 
-const CardHolder: FunctionComponent<CardsHolderInterface> = ({Products}) => {
+const CardHolder: FunctionComponent<CardsHolderInterface> = ({Products,toggleProduct}) => {
 
     const loadingCheck = () =>{
       if(Products.length==0){
@@ -17,7 +18,7 @@ const CardHolder: FunctionComponent<CardsHolderInterface> = ({Products}) => {
       }
     }
 
-    const cards = Products.map((item)=> <Card key={item.Name} Product={item}/>);
+    const cards = Products.map((item)=> <Card toggleProduct={toggleProduct} key={item.Name} Product={item}/>);
 
   return (
     <React.Fragment>

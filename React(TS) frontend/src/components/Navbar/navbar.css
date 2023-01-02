@@ -28,6 +28,7 @@ hr{
 }
 
 button{
+    cursor: pointer;
     font-size:large;
     border-radius: 0px;
     box-shadow: 10px;

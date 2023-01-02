@@ -8,6 +8,16 @@ import Product from './Interfaces/Product.interface'
 const App: FunctionComponent = () => {
 
     const [productData,setProducts] = useState<Product[]>([]);
+    const [chosenProducts,setChosenProducts] = useState<Product[]>([]);
+
+    const toggleProduct = (product:Product)=>{
+        if(chosenProducts.includes(product)){
+            setChosenProducts(chosenProducts.filter((item) => item != product));
+        }else{
+            setChosenProducts([product,...chosenProducts]);
+        }
+    }
+
 
     const getData = async ()=>{
 
@@ -21,6 +31,9 @@ const App: FunctionComponent = () => {
         
     }
 
+    useEffect(()=>{
+        console.log("Chosen: ",chosenProducts)
+    },[chosenProducts])
 
     useEffect(()=>{
         getData();
@@ -30,7 +43,7 @@ const App: FunctionComponent = () => {
   return (
     <React.Fragment>
         <Navbar/>
-        <CardHolder Products={productData}/>
+        <CardHolder Products={productData} toggleProduct={toggleProduct}/>
     </React.Fragment>
 
     )
