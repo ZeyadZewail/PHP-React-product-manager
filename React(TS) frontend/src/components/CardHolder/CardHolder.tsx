@@ -6,19 +6,33 @@ import './CardHolder.css'
 interface CardsHolderInterface{
     Products: Product[],
     toggleProduct: Function,
+    isLoading:Boolean
 }
 
-const CardHolder: FunctionComponent<CardsHolderInterface> = ({Products,toggleProduct}) => {
+const CardHolder: FunctionComponent<CardsHolderInterface> = ({Products,toggleProduct,isLoading}) => {
 
     const loadingCheck = () =>{
-      if(Products.length==0){
+      if(isLoading){
         return <div className='loading'><h1>Loading....</h1></div>
       }else{
-        return <div className='cardholder'>{cards}</div>
+        let products = cards();
+        if(products.length != 0){
+          return <div className='cardholder'>{cards()}</div>
+        }else{
+          return <div className='loading'><h1>No Products</h1></div>
+        }
+        
       }
     }
 
-    const cards = Products.map((item)=> <Card toggleProduct={toggleProduct} key={item.Name} Product={item}/>);
+    const cards = () => {
+      if(!isLoading && Products.length != 0 ){
+        return Products.map((item)=> <Card toggleProduct={toggleProduct} key={item.Name} Product={item}/>);
+      }else{
+        return [];
+      }
+      
+    }
 
   return (
     <React.Fragment>

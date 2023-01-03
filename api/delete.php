@@ -18,15 +18,14 @@
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
 
-    echo $data->SKUs;
   // Delete post
   if($product->deleteProducts($data->SKUs)) {
     echo json_encode(
-      array('message' => 'Post Deleted')
+      array('message' => 'Products Deleted')
     );
   } else {
     echo json_encode(
-      array('message' => 'Post Not Deleted')
+      array('message' => 'Products Not Deleted')
     );
 } 
 ?>
