@@ -1,5 +1,5 @@
 <?php
 
-echo 'xdd';
+echo 'Server Running!';
 
 ?>

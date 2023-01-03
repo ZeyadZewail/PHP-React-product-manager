@@ -22,7 +22,7 @@ const App: FunctionComponent = () => {
     const getData = async ()=>{
 
         console.log('fetching....');
-        const response = await fetch('http://127.0.0.1/edsa-scandiweb/Product.php');
+        const response = await fetch('http://127.0.0.1/edsa-scandiweb/products.php');
         const data = await response.json() as Product[];
 
         setProducts(data);
