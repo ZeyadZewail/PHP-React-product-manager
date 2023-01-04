@@ -162,7 +162,7 @@ const Addpanel: FunctionComponent = () => {
       <label htmlFor='Name'>Name:</label>
       <input onChange={updateForm} id="name" type="text" name="Name" title='Please input a Name'/>
       <label  htmlFor='Price'>Price ($):</label>
-      <input onChange={updateForm} id="price" type="text" name="Price" title='Please input a Price'/>
+      <input onChange={updateFormNumbersOnly} id="price" type="text" name="Price" title='Please input a Price'/>
       <label  htmlFor='Type'>Type Switcher:</label>
       <select onChange={updateSelection} id="productType" name='Type' title='Please Pick a Type'>
         <option value="">--Type--</option>
