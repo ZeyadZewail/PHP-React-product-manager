@@ -24,7 +24,7 @@ const Navbar: FunctionComponent<NavbarInterface>= ({deleteSelectedProducts}) => 
       return<React.Fragment>
         <h1>Add Product</h1>
         <div className='buttons'>
-          <button onClick={() => navigate("/")} >Back</button>
+          <button onClick={() => navigate("/")} >Cancel</button>
         </div>
       </React.Fragment>
     }

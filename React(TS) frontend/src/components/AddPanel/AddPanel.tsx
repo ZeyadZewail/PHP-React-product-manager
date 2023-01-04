@@ -1,4 +1,5 @@
 import React, {FunctionComponent,useState,useRef} from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import Product from '../../Interfaces/Product.interface'
 import './AddPanel.css'
 
@@ -6,10 +7,14 @@ import './AddPanel.css'
 
 const Addpanel: FunctionComponent = () => {
 
-  let conditionalForm = useRef<HTMLFormElement>(null)
+  const navigate = useNavigate();
+
   let heightRef = useRef<HTMLInputElement>(null);
   let widthRef = useRef<HTMLInputElement>(null);
   let lengthRef = useRef<HTMLInputElement>(null);
+  let weightRef = useRef<HTMLInputElement>(null);
+  let sizeRef = useRef<HTMLInputElement>(null);
+  let formRef = useRef<HTMLFormElement>(null);
 
   const[error,SetError] = useState("");
 
@@ -29,15 +34,19 @@ const Addpanel: FunctionComponent = () => {
       let requestOptions = {
           method: 'POST',
           headers: {
-              'Accept': 'application/json',
-              'mode' : 'no-cors'
+              Accept: 'application/json'
           },
           body: raw
         };
 
         const response = await fetch('http://127.0.0.1/edsa-scandiweb/create.php',requestOptions);
         const data = await response.json();
-        console.log(data)
+        if(data["message"]){
+          alert(data["message"])
+          navigate("/");
+        }else if(data["errorInfo"]){
+          alert("Duplicate SKU")
+        }
     };
 
 
@@ -81,8 +90,24 @@ const Addpanel: FunctionComponent = () => {
   }
   
   const updateSelection = (event: React.ChangeEvent<HTMLSelectElement>) =>{
-    conditionalForm.current?.reset();
+    resetConditionalForm();
     setFormData({ ...formData, [event.currentTarget.name]: event.target.value,["TypeValue"]: ""});
+  }
+
+  const resetConditionalForm = () => {
+    if(heightRef.current && lengthRef.current && widthRef.current){
+      heightRef.current.value = "";
+      lengthRef.current.value = "";
+      widthRef.current.value = "";
+    }
+
+    if(weightRef.current){
+      weightRef.current.value ="";
+    }
+
+    if(sizeRef.current){
+      sizeRef.current.value ="";
+    }
   }
 
   const conditionalRender = () =>{
@@ -92,15 +117,15 @@ const Addpanel: FunctionComponent = () => {
 
     if(formData.Type == "DVD"){
       return <React.Fragment>
-        <label  htmlFor='Size'> Size (MB):</label>
-        <input onChange={updateFormNumbersOnly} type="text" name="TypeValue"/>
+        <label  htmlFor='size'> Size (MB):</label>
+        <input ref={sizeRef} id="size" onChange={updateFormNumbersOnly} type="text" name="TypeValue" title='Please input a Size'/>
       </React.Fragment>
     }
 
     if(formData.Type == "Book"){
       return <React.Fragment>
         <label  htmlFor='Weight'> Weight (KG):</label>
-        <input onChange={updateFormNumbersOnly} type="text" name="TypeValue"/>
+        <input ref={weightRef} id="weight" onChange={updateFormNumbersOnly} type="text" name="TypeValue" title='Please input a Weight'/>
 
       </React.Fragment>
     }
@@ -117,13 +142,13 @@ const Addpanel: FunctionComponent = () => {
 
       return <React.Fragment>
         <label  htmlFor='Height'> Height (CM):</label>
-        <input ref={heightRef} onChange={handleDimensions} type="text" name="Height"/>
+        <input ref={heightRef} id= "height" onChange={handleDimensions} type="text" name="Height" title='Please input a Height'/>
 
         <label  htmlFor='Width'> Width (CM):</label>
-        <input ref= {widthRef} onChange={handleDimensions} type="text" name="Width"/>
+        <input ref= {widthRef} id= "width" onChange={handleDimensions} type="text" name="Width" title='Please input a Width'/>
 
         <label  htmlFor='Length'> Length (CM):</label>
-        <input ref={lengthRef} onChange={handleDimensions} type="text" name="Length"/>
+        <input ref={lengthRef} id= "length" onChange={handleDimensions} type="text" name="Length" title='Please input a Length'/>
 
       </React.Fragment>
     }
@@ -131,26 +156,24 @@ const Addpanel: FunctionComponent = () => {
 
   return (
     <div className='AddPanel'>
-    <form id='product_form'>
+    <form ref={formRef} id='product_form'>
       <label htmlFor='SKU'>SKU: </label>
-      <input onChange={updateForm} type="text" name="SKU"/>
+      <input onChange={updateForm} id="sku" type="text" name="SKU" title='Please input a SKU'/>
       <label htmlFor='Name'>Name:</label>
-      <input onChange={updateForm} type="text" name="Name"/>
+      <input onChange={updateForm} id="name" type="text" name="Name" title='Please input a Name'/>
       <label  htmlFor='Price'>Price ($):</label>
-      <input onChange={updateForm} type="text" name="Price"/>
+      <input onChange={updateForm} id="price" type="text" name="Price" title='Please input a Price'/>
       <label  htmlFor='Type'>Type Switcher:</label>
-      <select onChange={updateSelection} name="Type" id="Type-select">
+      <select onChange={updateSelection} id="productType" name='Type' title='Please Pick a Type'>
         <option value="">--Type--</option>
         <option value="DVD">DVD</option>
         <option value="Book">Book</option>
         <option value="Furniture">Furniture</option>
       </select>
-      <form ref={conditionalForm} id='conditionalForm'>
       {conditionalRender()}
-      </form>
     </form>
     {renderError()}
-    <button name='submit' type='submit' className='SubmitButton' onClick={Submit} >Submit</button>
+    <button name='submit' type='submit' className='SubmitButton' onClick={Submit} >Save</button>
     </div>
   ) 
 }

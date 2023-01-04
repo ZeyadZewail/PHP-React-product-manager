@@ -57,10 +57,6 @@
             return true;
         }
 
-        // Print error if something goes wrong
-        printf("Error: %s.\n", $statement->error);
-        printf("Statement: %s.\n", $statement);
-
         return false;
     }
 
@@ -82,9 +78,6 @@
         if($statement->execute()) {
           return true;
         }
-
-        // Print error if something goes wrong
-        printf("Error: %s.\n", $statement->error);
 
         return false;
   }
