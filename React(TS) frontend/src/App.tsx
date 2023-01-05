@@ -5,7 +5,8 @@ import Navbar from './components/Navbar/navbar'
 import Product from './Interfaces/Product.interface'
 import Addpanel from './components/AddPanel/AddPanel';
 
-export const api = '';
+export const api = 'https://scandiweb-zeyad.000webhostapp.com/';
+//export const api = 'http://127.0.0.1:80/';
 
 const App: FunctionComponent = () => {
 
@@ -67,7 +68,7 @@ const App: FunctionComponent = () => {
         let raw = JSON.stringify(SKUsJson);
         console.log(raw);
         let requestOptions = {
-            method: 'DELETE',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json'
             },

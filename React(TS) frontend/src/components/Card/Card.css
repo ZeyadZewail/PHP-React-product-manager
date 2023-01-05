@@ -11,6 +11,7 @@
     align-self: center;
     padding: 1em;
     cursor: pointer;
+    height: 80%;
   }
 
 .card > p {
