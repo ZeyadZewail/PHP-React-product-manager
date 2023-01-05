@@ -16,8 +16,8 @@ const Navbar: FunctionComponent<NavbarInterface>= ({deleteSelectedProducts}) => 
       return <React.Fragment>
         <h1>Product List</h1>
         <div className='buttons'>
-          <button onClick={() => navigate("/add")} >Add</button>
-          <button onClick={() => deleteSelectedProducts()} id='delete-product-bin'>Mass Delete</button>
+          <button onClick={() => navigate("/add")} >ADD</button>
+          <button onClick={() => deleteSelectedProducts()} id='delete-product-bin'>MASS DELETE</button>
         </div>
       </React.Fragment>
     }else if (location.pathname == '/add'){

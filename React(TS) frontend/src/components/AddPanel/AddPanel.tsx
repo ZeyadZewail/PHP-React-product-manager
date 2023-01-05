@@ -44,7 +44,6 @@ const Addpanel: FunctionComponent = () => {
         const response = await fetch(api + '/edsa-scandiweb/create.php',requestOptions);
         const data = await response.json();
         if(data["message"]){
-          alert(data["message"])
           navigate("/");
         }else if(data["errorInfo"]){
           alert(data["errorInfo"][2])
