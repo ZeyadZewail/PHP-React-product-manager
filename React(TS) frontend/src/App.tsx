@@ -5,8 +5,11 @@ import Navbar from './components/Navbar/navbar'
 import Product from './Interfaces/Product.interface'
 import Addpanel from './components/AddPanel/AddPanel';
 
+export const api = '';
 
 const App: FunctionComponent = () => {
+
+    
 
     const [productData,setProducts] = useState<Product[]>([]);
     const [selectedProducts,setSelectedProducts] = useState<Product[]>([]);
@@ -29,7 +32,7 @@ const App: FunctionComponent = () => {
         }
 
         console.log('fetching....');
-        const response = await fetch('http://127.0.0.1/edsa-scandiweb/products.php');
+        const response = await fetch(api+ '/edsa-scandiweb/products.php');
         const data = await response.json() as Product[];
 
         setProducts(data);
@@ -71,7 +74,7 @@ const App: FunctionComponent = () => {
             body: raw
           };
 
-        const response = await fetch('http://127.0.0.1/edsa-scandiweb/delete.php',requestOptions);
+        const response = await fetch(api + 'edsa-scandiweb/delete.php',requestOptions);
         const data = await response.json();
 
         getData();

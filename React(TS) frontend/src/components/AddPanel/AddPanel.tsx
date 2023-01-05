@@ -2,10 +2,12 @@ import React, {FunctionComponent,useState,useRef} from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import Product from '../../Interfaces/Product.interface'
 import './AddPanel.css'
-
+import {api} from '../../App'
 
 
 const Addpanel: FunctionComponent = () => {
+
+
 
   const navigate = useNavigate();
 
@@ -39,7 +41,7 @@ const Addpanel: FunctionComponent = () => {
           body: raw
         };
 
-        const response = await fetch('http://127.0.0.1/edsa-scandiweb/create.php',requestOptions);
+        const response = await fetch(api + '/edsa-scandiweb/create.php',requestOptions);
         const data = await response.json();
         if(data["message"]){
           alert(data["message"])
