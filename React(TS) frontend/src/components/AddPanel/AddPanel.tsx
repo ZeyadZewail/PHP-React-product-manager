@@ -47,7 +47,7 @@ const Addpanel: FunctionComponent = () => {
           alert(data["message"])
           navigate("/");
         }else if(data["errorInfo"]){
-          alert("Duplicate SKU")
+          alert(data["errorInfo"][2])
         }
     };
 
