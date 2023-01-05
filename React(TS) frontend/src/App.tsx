@@ -5,9 +5,9 @@ import Navbar from './components/Navbar/navbar'
 import Product from './Interfaces/Product.interface'
 import Addpanel from './components/AddPanel/AddPanel';
 
-//export const api = 'https://scandiweb-zeyad.000webhostapp.com/';
+export const api = 'https://scandiweb-zeyad.000webhostapp.com/';
 //export const api = 'http://127.0.0.1:80/';
-export const api = '';
+//export const api = '';
 
 const App: FunctionComponent = () => {
 
@@ -17,6 +17,10 @@ const App: FunctionComponent = () => {
     const [selectedProducts,setSelectedProducts] = useState<Product[]>([]);
     const [isLoading,setLoading] = useState(true);
     const location = useLocation();
+
+    const resetSelected = ()=>{
+        setSelectedProducts([])
+    }
 
 
     const toggleProduct = (product:Product)=>{
@@ -88,7 +92,7 @@ const App: FunctionComponent = () => {
   return (
 
         <React.Fragment>
-        <Navbar deleteSelectedProducts={deleteSelectedProducts}/>
+        <Navbar deleteSelectedProducts={deleteSelectedProducts} resetSelected={resetSelected}/>
         <Routes>
             <Route path='/' element={<CardHolder isLoading={isLoading} Products={productData} toggleProduct={toggleProduct}/>}/>
             <Route path='/add' element={<Addpanel/>}/>

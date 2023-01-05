@@ -4,9 +4,10 @@ import { useNavigate ,useLocation} from "react-router-dom";
 
 interface NavbarInterface{
   deleteSelectedProducts: Function,
+  resetSelected:Function
 }
 
-const Navbar: FunctionComponent<NavbarInterface>= ({deleteSelectedProducts}) => {
+const Navbar: FunctionComponent<NavbarInterface>= ({deleteSelectedProducts,resetSelected}) => {
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,7 +17,7 @@ const Navbar: FunctionComponent<NavbarInterface>= ({deleteSelectedProducts}) => 
       return <React.Fragment>
         <h1>Product List</h1>
         <div className='buttons'>
-          <button onClick={() => navigate("/add")} >ADD</button>
+          <button onClick={() => {navigate("/add"),resetSelected()}} >ADD</button>
           <button onClick={() => deleteSelectedProducts()} id='delete-product-bin'>MASS DELETE</button>
         </div>
       </React.Fragment>
