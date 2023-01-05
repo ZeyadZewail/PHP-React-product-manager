@@ -74,7 +74,7 @@ const App: FunctionComponent = () => {
             body: raw
           };
 
-        const response = await fetch(api + 'edsa-scandiweb/delete.php',requestOptions);
+        const response = await fetch(api + '/edsa-scandiweb/delete.php',requestOptions);
         const data = await response.json();
 
         getData();
