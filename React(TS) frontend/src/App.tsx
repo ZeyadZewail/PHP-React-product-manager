@@ -5,8 +5,8 @@ import Navbar from './components/Navbar/navbar'
 import Product from './Interfaces/Product.interface'
 import Addpanel from './components/AddPanel/AddPanel';
 
-export const api = 'https://scandiweb-zeyad.000webhostapp.com/';
-//export const api = 'http://127.0.0.1:80/';
+//export const api = 'https://scandiweb-zeyad.000webhostapp.com/';
+export const api = 'http://127.0.0.1:80/';
 //export const api = '';
 
 const App: FunctionComponent = () => {
