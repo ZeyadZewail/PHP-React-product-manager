@@ -6,9 +6,8 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 include_once './controllers/ProductController.php';
 
-$data = json_decode(file_get_contents("php://input"));
-$controller = new ProductController();
 
-echo $controller->CreateProduct($data)
+$controller = new ProductController();
+$controller->CreateProduct()
 
 ?>
