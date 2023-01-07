@@ -8,7 +8,6 @@ import {api} from '../../App'
 const Addpanel: FunctionComponent = () => {
 
 
-
   const navigate = useNavigate();
 
   let heightRef = useRef<HTMLInputElement>(null);

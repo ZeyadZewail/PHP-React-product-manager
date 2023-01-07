@@ -3,39 +3,33 @@ import Product from '../../Interfaces/Product.interface';
 import './Card.css';
 
 interface CardInterface{
-    Product: Product,
+    product: Product,
     toggleProduct: Function,
 }
 
-const Card: FunctionComponent<CardInterface> = ({Product,toggleProduct}) => {
+const Card: FunctionComponent<CardInterface> = ({product,toggleProduct}) => {
     const [checked, setChecked] = useState(false);
 
-    const parseTypeValue = (type:string,typeValue:string) =>{
-      if(type === "DVD"){
-        return "Size: " + typeValue + " MB"
-      }
-      if(type === "Book"){
-        return "Weight: " + typeValue + "KG"
-      }
-      if(type === "Furniture"){
-        return "Dimension: " + typeValue
-      }
-      
-      return "Unknown Type";
-    }
+    const productTypeFormatters:any = {
+      DVD: (value: string) => `Size ${value} MB`,
+      Book: (value: string) => `Weight: ${value} KG`,
+      Furniture: (value: string) => `Dimension: ${value}`,
+      default: (value: string) => `Unknown Type: ${value}`,
+   }
+
 
     const handleChange = () => {
       setChecked(!checked);
-      toggleProduct(Product);
+      toggleProduct(product);
     };
 
   return (
     <div className='card' onClick={handleChange}>
       <input type="checkbox" checked={checked} onChange={handleChange} className='delete-checkbox'></input>
-      <p>{Product.SKU}</p>
-      <p>{Product.Name}</p>
-      <p>{Product.Price}$</p>
-      <p>{parseTypeValue(Product.Type,Product.TypeValue)}</p>
+      <p>{product.SKU}</p>
+      <p>{product.Name}</p>
+      <p>{product.Price}$</p>
+      <p>{productTypeFormatters[product.Type]?.(product.TypeValue) ?? productTypeFormatters["default"](product.TypeValue)}</p>
     </div>
   )
 }

@@ -7,23 +7,42 @@ include_once './models/Product.php';
 class ProductController extends Controller{
 
     function Create(){
-        $data = $this->getJsonBody();
-        $product = new Product($data);
-        $result = $product->CreateProduct();
-        $this->echoJsonResponse($result);
+        try{
+
+            $data = $this->getJsonBody();
+            $product = new Product($data);
+            $result = $product->CreateProduct();
+            $this->echoJsonResponse($result);
+
+          }catch(Exception $e){
+
+            $this->echoJsonResponse($e);
+        }
     }
 
     function Delete(){
-        $data = $this->getJsonBody();
-        $SKUsArray = $data->SKUs;
-        $result = Product::DeleteProducts($SKUsArray);
-        $this->echoJsonResponse($result);
+        try{
+            
+            $data = $this->getJsonBody();
+            $SKUsArray = $data->SKUs;
+            $result = Product::DeleteProducts($SKUsArray);
+            $this->echoJsonResponse($result);
+
+          }catch(Exception $e){
+
+            $this->echoJsonResponse($e);
+        }  
     }
 
     function Get(){
-        $data = $this->getJsonBody();
-        $result = Product::GetProducts();
-        $this->echoJsonResponse($result);
+        try{
+            $data = $this->getJsonBody();
+            $result = Product::GetProducts();
+            $this->echoJsonResponse($result);
+          }catch(Exception $e){
+
+            $this->echoJsonResponse($e);
+        }
     }
 
     function Update(){
