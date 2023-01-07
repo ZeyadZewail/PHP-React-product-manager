@@ -1,9 +1,19 @@
 <?php 
 
 abstract class Controller {
-    abstract public function getJsonBody();
+    public function getJsonBody() {
+        return json_decode(file_get_contents("php://input"));
+	}
 
-    abstract public function echoJsonResponse($data);
+	public function echoJsonResponse($data) {
+        echo json_encode($data);
+	}
+
+    abstract function Create();
+    abstract function Delete();
+    abstract function Get();
+    abstract function Update();
+
   }
 
 

@@ -7,6 +7,6 @@ header('Content-Type: application/json');
 include_once './controllers/ProductController.php';
 
 $controller = new ProductController();
-$controller->GetProducts();
+$controller->Get();
 
 ?>

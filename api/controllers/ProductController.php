@@ -6,33 +6,31 @@ include_once './models/Product.php';
 
 class ProductController extends Controller{
 
-    function CreateProduct(){
+    function Create(){
         $data = $this->getJsonBody();
         $product = new Product($data);
         $result = $product->CreateProduct();
         $this->echoJsonResponse($result);
     }
 
-    function DeleteProducts(){
+    function Delete(){
         $data = $this->getJsonBody();
         $SKUsArray = $data->SKUs;
         $result = Product::DeleteProducts($SKUsArray);
         $this->echoJsonResponse($result);
     }
 
-    function GetProducts(){
+    function Get(){
         $data = $this->getJsonBody();
         $result = Product::GetProducts();
         $this->echoJsonResponse($result);
     }
 
-	public function getJsonBody() {
-        return json_decode(file_get_contents("php://input"));
-	}
+    function Update(){
+        $this->echoJsonResponse(array('Error' => 'Not Implemented'));
+    }
 
-	public function echoJsonResponse($data) {
-        echo json_encode($data);
-	}
+	
 }
 
 

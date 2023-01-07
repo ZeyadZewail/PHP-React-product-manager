@@ -8,6 +8,6 @@
   include_once './controllers/ProductController.php';
 
   $controller = new ProductController();
-  $controller->DeleteProducts();
+  $controller->Delete();
 
 ?>
