@@ -6,10 +6,8 @@
 
 
   include_once './controllers/ProductController.php';
-  // Get raw posted data
-  $data = json_decode(file_get_contents("php://input"));
-  $controller = new ProductController();
 
-  echo $controller->DeleteProducts($data->SKUs);
+  $controller = new ProductController();
+  $controller->DeleteProducts();
 
 ?>
