@@ -1,4 +1,4 @@
 # PHP-React-product-manager
 
-#live preview
+# live preview
 https://scandiweb-zeyad.000webhostapp.com/
