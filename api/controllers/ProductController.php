@@ -2,7 +2,9 @@
 
 include_once 'Controller.php';
 include_once './models/Product.php';
-
+include_once './models/Book.php';
+include_once './models/DVD.php';
+include_once './models/Furniture.php';
 
 class ProductController extends Controller{
 
@@ -10,7 +12,19 @@ class ProductController extends Controller{
         try{
 
             $data = $this->getJsonBody();
-            $product = new Product($data);
+            
+            if($data->Type == "Book"){
+                $product = new Book($data);
+            }
+
+            if($data->Type == "DVD"){
+                $product = new DVD($data);
+            }
+
+            if ($data->Type == "Furniture") {
+                $product = new Furniture($data);
+            }
+            
             $result = $product->CreateProduct();
             $this->echoJsonResponse($result);
 
@@ -51,16 +65,6 @@ class ProductController extends Controller{
 
 	
 }
-
-
-
-
-
-
-
-
-
-
 
 
 ?>
