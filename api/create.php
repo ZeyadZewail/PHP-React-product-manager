@@ -7,6 +7,4 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 include_once './controllers/ProductController.php';
 
 $controller = new ProductController();
-$controller->Create()
-
-?>
+$controller->Create();

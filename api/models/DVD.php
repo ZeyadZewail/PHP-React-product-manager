@@ -21,6 +21,3 @@ class DVD extends Product
     return 'DVD';
   }
 }
-
-
-?>

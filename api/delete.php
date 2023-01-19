@@ -9,5 +9,3 @@
 
   $controller = new ProductController();
   $controller->Delete();
-
-?>

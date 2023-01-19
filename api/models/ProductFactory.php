@@ -24,5 +24,3 @@ class ProductFactory
     return new $product_class($data);
   }
 }
-
-?>
